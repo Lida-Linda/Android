@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.lidiia.test.MainActivity">
+    <item
+        android:id="@+id/activity_A"
+        android:orderInCategory="100"
+        android:title="@string/ActivityA"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/activity_B"
+        android:orderInCategory="100"
+        android:title="@string/ActivityB"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/activity_C"
+        android:orderInCategory="100"
+        android:title="@string/ActivityC"
+        app:showAsAction="never" />
+</menu>
