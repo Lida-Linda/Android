@@ -20,13 +20,13 @@
         </activity>
         <activity
             android:name=".ActivityA"
-            android:label="@string/ActivityA"/>
-        <activity
-            android:name=".ActivityB"
-            android:label="@string/ActivityB"/>
+            android:label="@string/ActivityA" />
         <activity
             android:name=".ActivityC"
-            android:label="@string/ActivityC"/>
+            android:label="@string/ActivityC" />
+        <activity 
+            android:name=".ActivityB"
+            android:label="@string/ActivityB"/>
     </application>
 
 </manifest>
