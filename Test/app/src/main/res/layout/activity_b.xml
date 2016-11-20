@@ -22,8 +22,14 @@
     <Button
         style="@style/SmallButton"
         android:layout_margin="15dp"
-        android:padding="1dp"
+        android:padding="2dp"
         android:text="Маленька кнопка" />
+
+    <Button
+        style="@style/BigButton.Red"
+        android:layout_margin="5dp"
+        android:padding="2dp"
+        android:text="Велика кнопка" />
 
 </LinearLayout>
 
