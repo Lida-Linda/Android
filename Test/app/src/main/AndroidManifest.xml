@@ -24,7 +24,7 @@
         <activity
             android:name=".ActivityC"
             android:label="@string/ActivityC" />
-        <activity 
+        <activity
             android:name=".ActivityB"
             android:label="@string/ActivityB"/>
     </application>
