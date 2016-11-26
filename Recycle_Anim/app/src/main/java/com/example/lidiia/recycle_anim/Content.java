@@ -21,23 +21,11 @@ public class Content {
         return image_Content;
     }
 
-    public void setImage_Content(int image_Content) {
-        this.image_Content = image_Content;
-    }
-
     public String getCommentContent() {
         return commentContent;
     }
 
-    public void setCommentContent(String commentContent) {
-        this.commentContent = commentContent;
-    }
-
     public String getNameContent() {
         return nameContent;
-    }
-
-    public void setNameContent(String nameContent) {
-        this.nameContent = nameContent;
     }
 }

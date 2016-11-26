@@ -43,6 +43,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
         holder.imageIV.setImageResource(content.getImage_Content());
         holder.nameTV.setText(content.getNameContent());
         holder.commentTV.setText(content.getCommentContent());
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
     }
 
     @Override
