@@ -17,7 +17,7 @@ public class Content {
         this.commentContent = comment;
     }
 
-    public int getImage_Content() {
+    public int getImageContent() {
         return image_Content;
     }
 

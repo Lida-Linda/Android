@@ -1,9 +1,12 @@
 package com.example.lidiia.recycle_anim;
 
+import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.setLayoutManager(myLayoutManager);
         recyclerViewMain.setAdapter(myAdapterMain);
         data();
+
+
+
     }
     private void data() {
         contentListMain.add(new Content(R.drawable.dog, "Собака Барабака", "ананас"));

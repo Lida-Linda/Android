@@ -1,32 +1,48 @@
 package com.example.lidiia.recycle_anim;
 
+
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 
 import java.util.List;
 
-public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     private List<Content> contentList;
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageIV;
         public TextView nameTV, commentTV;
+
         public MyViewHolder(View itemView) {
             super(itemView);//???????????????????????/
             imageIV = (ImageView) itemView.findViewById(R.id.image_id);
             nameTV = (TextView) itemView.findViewById(R.id.name_id);
             commentTV = (TextView) itemView.findViewById(R.id.comment_id);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    Toast.makeText(view.getContext(),
+                            commentTV.getText(),
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         }
+
     }
 
     public MyAdapter(List<Content> contentList) {
         this.contentList = contentList;
     }
+
 
 
     //????????????????????????????/
@@ -38,18 +54,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder (MyViewHolder holder, int position){
         Content content = contentList.get(position);
-        holder.imageIV.setImageResource(content.getImage_Content());
+        holder.imageIV.setImageResource(content.getImageContent());
         holder.nameTV.setText(content.getNameContent());
         holder.commentTV.setText(content.getCommentContent());
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                
-            }
-        });
     }
 
     @Override
