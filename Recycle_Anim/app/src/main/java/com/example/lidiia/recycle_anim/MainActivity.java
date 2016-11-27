@@ -1,21 +1,37 @@
 package com.example.lidiia.recycle_anim;
 
-import android.graphics.Movie;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private List<Content> contentListMain = new ArrayList<>();
     private RecyclerView recyclerViewMain;
     private MyAdapter myAdapterMain;
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.menu_second_id) {
+            Intent intent = new Intent(this, SecondActivity.class);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewMain.setLayoutManager(myLayoutManager);
         recyclerViewMain.setAdapter(myAdapterMain);
         data();
-
-
-
     }
     private void data() {
         contentListMain.add(new Content(R.drawable.dog, "Собака Барабака", "ананас"));

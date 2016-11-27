@@ -59,7 +59,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.imageIV.setImageResource(content.getImageContent());
         holder.nameTV.setText(content.getNameContent());
         holder.commentTV.setText(content.getCommentContent());
-
     }
 
     @Override
