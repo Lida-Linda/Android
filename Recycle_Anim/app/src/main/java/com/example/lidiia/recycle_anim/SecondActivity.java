@@ -1,9 +1,13 @@
 package com.example.lidiia.recycle_anim;
 
-import android.app.Activity;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
-/**
- * Created by lidiia on 27.11.16.
- */
-public class SecondActivity extends Activity {
+public class SecondActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+    }
 }

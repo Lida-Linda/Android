@@ -31,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(view.getContext(),
-                            commentTV.getText(),
+                            ((getAdapterPosition() + 1) + ". " + commentTV.getText()),
                             Toast.LENGTH_SHORT).show();
                 }
             });
@@ -43,8 +43,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         this.contentList = contentList;
     }
 
-
-
     //????????????????????????????/
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -53,8 +51,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return new MyViewHolder(item);
     }
 
+    public int position;
+
     @Override
     public void onBindViewHolder (MyViewHolder holder, int position){
+        this.position = position;
         Content content = contentList.get(position);
         holder.imageIV.setImageResource(content.getImageContent());
         holder.nameTV.setText(content.getNameContent());
