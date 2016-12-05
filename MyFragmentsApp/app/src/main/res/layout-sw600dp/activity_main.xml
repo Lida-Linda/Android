@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.lidiia.myfragmentsapp.MainActivity">
+
+    <fragment
+        android:layout_weight="1"
+        android:name="com.example.lidiia.myfragmentsapp.FragmentA"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        tools:layout="@android:layout/list_content"/>
+
+    <fragment
+        android:layout_weight="1"
+        android:id="@+id/fragment_b"
+        android:name="com.example.lidiia.myfragmentsapp.FragmentB"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"/>
+</LinearLayout>
