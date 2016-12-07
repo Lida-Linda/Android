@@ -47,8 +47,6 @@ public class FragmentB extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
-        //from
     }
 
     public void update(int id) {
