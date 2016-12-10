@@ -1,18 +1,28 @@
 package com.example.lidiia.tabbed;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,
+            UnCheckedFragment1.OnFragmentInteractionListener,
+                CheckedFragment2.OnFragmentInteractionListenerU,
+                    TabLayout.OnTabSelectedListener {
+
+    TabLayout tabLayout;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,14 +32,20 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_id);
         setSupportActionBar(toolbar);
 
-//        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout_id);
-//        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(
-//                this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawerLayout.addDrawerListener(actionBarDrawerToggle);
-//        actionBarDrawerToggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view_id);
         navigationView.setNavigationItemSelectedListener(this);
+
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout_id);
+
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.addTab(tabLayout.newTab());
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        viewPager = (ViewPager) findViewById(R.id.view_pager_container_id);
+
+        Pager pagerAdapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
+        viewPager.setAdapter(pagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
 
@@ -72,5 +88,34 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onFragmentInteraction(int id) {
+        CheckedFragment2 uncheckedFragment =
+                (CheckedFragment2) getSupportFragmentManager().findFragmentById(R.id.fragment_id);
+        uncheckedFragment.update(id);
+    }
+
+    @Override
+    public void onFragmentInteractionU(int id) {
+        UnCheckedFragment1 checkedFragment =
+                (UnCheckedFragment1) getSupportFragmentManager().findFragmentById(R.id.fragment_id);
+        //fsdrxfxc
+    }
+
+    @Override
+    public void onTabSelected(TabLayout.Tab tab) {
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+
+    @Override
+    public void onTabUnselected(TabLayout.Tab tab) {
+
+    }
+
+    @Override
+    public void onTabReselected(TabLayout.Tab tab) {
+
     }
 }
