@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyAdapter extends  RecyclerView.Adapter<MyAdapter.MyViewHolder>{
+public class MyAdapter extends  RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     List<String> list = new ArrayList<>();
     OnListClickListener onListClickListener;
@@ -66,4 +66,5 @@ public class MyAdapter extends  RecyclerView.Adapter<MyAdapter.MyViewHolder>{
     public void setOnListClickListener(OnListClickListener onListClickListener) {
         this.onListClickListener = onListClickListener;
     }
+
 }

@@ -11,14 +11,18 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UnCheckedFragment1 extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private OnFragmentInteractionListenerU mListener;
     RecyclerView recyclerView;
+    CheckBox checkBox;
+    List<String> list;
+    MyAdapter myAdapter;
 
     public UnCheckedFragment1() {
         // Required empty public constructor
@@ -29,6 +33,7 @@ public class UnCheckedFragment1 extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+        checkBox = (CheckBox) view.findViewById(R.id.checkbox_id);
     }
 
     @Override
@@ -42,18 +47,18 @@ public class UnCheckedFragment1 extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        MyAdapter myAdapter = new MyAdapter(myList());
+        myAdapter = new MyAdapter(myList());
         myAdapter.setOnListClickListener(new MyAdapter.OnListClickListener() {
             @Override
             public void onListClick(int id) {
-                mListener.onFragmentInteraction(id);
+                mListener.onFragmentInteractionU(id);
             }
         });
         recyclerView.setAdapter(myAdapter);
     }
 
     private List<String> myList() {
-        List<String> list = new ArrayList<>();
+        list = new ArrayList<>();
         for (int i = 1; i < 11; i++) {
             list.add("Lego " + i);
         }
@@ -63,8 +68,8 @@ public class UnCheckedFragment1 extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof OnFragmentInteractionListenerU) {
+            mListener = (OnFragmentInteractionListenerU) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -81,7 +86,15 @@ public class UnCheckedFragment1 extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
-        void onFragmentInteraction(int id);
+    public interface OnFragmentInteractionListenerU {
+        void onFragmentInteractionU(int id);
     }
+
+    public void removeItem(int idU) {
+//        checkBox.setChecked(true);
+        list.remove(idU);
+        myAdapter.notifyDataSetChanged();
+    }
+
+
 }

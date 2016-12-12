@@ -9,7 +9,6 @@ import android.widget.TextView;
 public class Pager extends FragmentPagerAdapter {
 
     int tabCount;
-    TextView textView;
 
     public Pager(FragmentManager fm, int tabCount) {
         super(fm);

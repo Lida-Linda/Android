@@ -5,15 +5,22 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CheckedFragment2 extends Fragment {
 
-    private OnFragmentInteractionListenerU mListener;
+    private OnFragmentInteractionListener mListener;
     RecyclerView recyclerView;
+    List<String> list = new ArrayList<>();
+    MyAdapter myAdapter;
 
     public CheckedFragment2() {
         // Required empty public constructor
@@ -24,6 +31,8 @@ public class CheckedFragment2 extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv);
+
+        list.add("Lego");
     }
 
     @Override
@@ -36,19 +45,34 @@ public class CheckedFragment2 extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListenerU) {
-            mListener = (OnFragmentInteractionListenerU) context;
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
     }
 
-    public void update(int id) {
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        myAdapter = new MyAdapter(list);
+        myAdapter.setOnListClickListener(new MyAdapter.OnListClickListener() {
+
+            @Override
+            public void onListClick(int id) {
+                mListener.onFragmentInteraction(id);
+            }
+        });
+        recyclerView.setAdapter(myAdapter);
     }
 
-
+    public void addItem(int id) {
+        list.add(getText(id).toString());
+        myAdapter.notifyDataSetChanged();
+    }
 
     /**
      * This interface must be implemented by activities that contain this
@@ -60,7 +84,8 @@ public class CheckedFragment2 extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListenerU {
-        void onFragmentInteractionU(int id);
+    public interface OnFragmentInteractionListener {
+        void onFragmentInteraction(int id);
     }
+
 }

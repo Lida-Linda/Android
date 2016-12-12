@@ -1,8 +1,11 @@
 package com.example.lidiia.tabbed;
 
+import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -14,16 +17,18 @@ import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
-            UnCheckedFragment1.OnFragmentInteractionListener,
-                CheckedFragment2.OnFragmentInteractionListenerU,
+            UnCheckedFragment1.OnFragmentInteractionListenerU,
+                CheckedFragment2.OnFragmentInteractionListener,
                     TabLayout.OnTabSelectedListener {
 
     TabLayout tabLayout;
     ViewPager viewPager;
-
+    Intent intent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         Pager pagerAdapter = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+
+
     }
 
 
@@ -54,12 +61,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.item_1_id) {
-
+            intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.item_2_id) {
-
-        } else if (id == R.id.item_3_id) {
-
-        } else if (id == R.id.item_4_id) {
 
         }
 
@@ -92,16 +96,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(int id) {
-        CheckedFragment2 uncheckedFragment =
-                (CheckedFragment2) getSupportFragmentManager().findFragmentById(R.id.fragment_id);
-        uncheckedFragment.update(id);
+
     }
 
     @Override
-    public void onFragmentInteractionU(int id) {
-        UnCheckedFragment1 checkedFragment =
-                (UnCheckedFragment1) getSupportFragmentManager().findFragmentById(R.id.fragment_id);
-        //fsdrxfxc
+    public void onFragmentInteractionU(int idU) {
+
     }
 
     @Override

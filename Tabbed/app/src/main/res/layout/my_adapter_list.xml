@@ -2,6 +2,7 @@
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/my_adapter_list_id"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -19,6 +20,7 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:clickable="false"
                 android:id="@+id/checkbox_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />

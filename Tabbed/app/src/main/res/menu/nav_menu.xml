@@ -6,23 +6,10 @@
         <item
             android:id="@+id/item_1_id"
             android:icon="@drawable/ic_turned_in_not_black_24dp"
-            android:title="Блокнот №1" />
+            android:title="Item 1" />
         <item
             android:id="@+id/item_2_id"
             android:icon="@drawable/ic_turned_in_not_black_24dp"
-            android:title="Блокнот №2" />
+            android:title="Item 2" />
     </group>
-
-    <item android:title="Рисочка">
-        <menu>
-            <item
-                android:id="@+id/item_3_id"
-                android:icon="@drawable/ic_turned_in_not_black_24dp"
-                android:title="Блокнот №3" />
-            <item
-                android:id="@+id/item_4_id"
-                android:icon="@drawable/ic_turned_in_not_black_24dp"
-                android:title="Блокнот №4" />
-        </menu>
-    </item>
 </menu>

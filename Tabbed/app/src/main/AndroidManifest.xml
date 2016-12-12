@@ -17,7 +17,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyAdapter"></activity>
+        <activity android:name=".MyAdapter" />
+        <activity android:name=".Empty" />
     </application>
 
 </manifest>
