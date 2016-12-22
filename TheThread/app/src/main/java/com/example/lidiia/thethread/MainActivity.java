@@ -45,17 +45,37 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
 
-                Thread myThread = new Thread(new Runnable() {
+                final Thread myThread = new Thread(new Runnable() {
                     Random random = new Random();
                     Bundle bundle = new Bundle();
                     Message msg2 = handler.obtainMessage();
 
                     @Override
                     public void run() {
-                        int randomColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
-                        bundle.putInt("ThreadColor", randomColor);
-                        msg2.setData(bundle);
-                        handler.sendMessage(msg2);
+                        try {
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myProgressBar.setVisibility(View.VISIBLE);
+                                }
+                            });
+
+                            Thread.sleep(1000);
+
+                            int randomColor = Color.argb(255, random.nextInt(256), random.nextInt(256), random.nextInt(256));
+                            bundle.putInt("ThreadColor", randomColor);
+                            msg2.setData(bundle);
+                            handler.sendMessage(msg2);
+
+                            handler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    myProgressBar.setVisibility(View.GONE);
+                                }
+                            });
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
                 myThread.start();
