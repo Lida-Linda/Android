@@ -64,14 +64,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-            try {
                 myProgressBar.setVisibility(View.GONE);
-                myTextView.setTextColor(myClass.get());
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
-                e.printStackTrace();
-            }
+                myTextView.setTextColor(integer);
         }
 
         @Override
