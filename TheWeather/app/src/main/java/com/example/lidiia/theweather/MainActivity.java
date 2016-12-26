@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
             String jsonStr = null;
 
             try {
-                URL url = new URL("api.openweathermap.org/data/2.5/weather?q=London,uk");
+                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=" + 710791 + "&APPID=fb932f11d172ebff38ca77f59cd8e63b");
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
                 urlConnection.connect();
@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 jsonStr = buffer.toString();
 
-            } catch (ProtocolException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
+//            } catch (ProtocolException e) {
+//                e.printStackTrace();
+//            } catch (MalformedURLException e) {
+//                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
