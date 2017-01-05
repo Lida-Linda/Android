@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Гра</string>
+    <string name="main_activity_label">Головне меню</string>
+    <string name="listening">Прослуховування</string>
+    <string name="game">Вікторина</string>
+    <string name="title_activity_listening">Прослуховування</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
