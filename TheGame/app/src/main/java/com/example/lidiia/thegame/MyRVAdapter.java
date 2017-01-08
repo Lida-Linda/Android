@@ -7,16 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.MyViewHolder> {
 
-    private List<ImageView> imagesList;
+    List<ListeningImageContent> listeningImageContents;
     OnImgClickListener onImgClickListener;
 
-    public MyRVAdapter(List<ImageView> imagesList) {
-        this.imagesList = imagesList;
+    public MyRVAdapter(List<ListeningImageContent> listeningImageContents) {
+        this.listeningImageContents = listeningImageContents;
     }
+
+
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -27,15 +30,21 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+        ListeningImageContent listeningImageContent = listeningImageContents.get(position);
+        holder.imageView.setImageResource(listeningImageContent.getImgContent());
     }
 
     @Override
     public int getItemCount() {
-        return imagesList.size();
+        return listeningImageContents.size();
     }
 
     public interface OnImgClickListener {
         void onImgClick(int id);
+    }
+
+    public void setOnImgClickListener (OnImgClickListener onImgClickListener){
+        this.onImgClickListener = onImgClickListener;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

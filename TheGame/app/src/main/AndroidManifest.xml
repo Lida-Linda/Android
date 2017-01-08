@@ -19,8 +19,11 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".ListeningActivity"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ListeningActivity"
+            android:label="@string/listening"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
