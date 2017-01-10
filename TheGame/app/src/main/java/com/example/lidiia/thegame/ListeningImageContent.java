@@ -1,15 +1,17 @@
 package com.example.lidiia.thegame;
 
-
-import android.media.SoundPool;
-import android.widget.ImageView;
-
 public class ListeningImageContent {
 
     private int imgContent;
+    private int soundContent;
 
     public ListeningImageContent() {
 
+    }
+
+    public ListeningImageContent(int imgContent, int soundContent) {
+        this.imgContent = imgContent;
+        this.soundContent= soundContent;
     }
 
     public ListeningImageContent(int imgContent) {
@@ -18,6 +20,11 @@ public class ListeningImageContent {
 
     public int getImgContent() {
         return imgContent;
+    }
+
+
+    public int getSoundContent() {
+        return soundContent;
     }
 
 }

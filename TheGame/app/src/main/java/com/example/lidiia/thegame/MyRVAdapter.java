@@ -1,15 +1,15 @@
 package com.example.lidiia.thegame;
 
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+
+// адаптер та холдер RecyclerView
 public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.MyViewHolder> {
 
     List<ListeningImageContent> listeningImageContents;
@@ -18,8 +18,6 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.MyViewHolder> 
     public MyRVAdapter(List<ListeningImageContent> listeningImageContents) {
         this.listeningImageContents = listeningImageContents;
     }
-
-
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -54,10 +52,6 @@ public class MyRVAdapter extends RecyclerView.Adapter<MyRVAdapter.MyViewHolder> 
             super(itemView);
 
             imageView = (ImageView) itemView.findViewById(R.id.imageview_id);
-        }
-
-        public void bindDrawable(Drawable drawable) {
-            imageView.setImageDrawable(drawable);
         }
     }
 }

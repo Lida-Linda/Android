@@ -12,6 +12,10 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        при відкритті відображається емблема додатку (drawable/my_splash.xml)
+//        доки не завантажиться весь додаток
+//        після завантаження одразу відкриється MainActivity
+
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
         finish();

@@ -1,6 +1,8 @@
 package com.example.lidiia.thegame;
 
 
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,9 +20,13 @@ import java.util.List;
 
 public class AnimalsFragment extends Fragment {
 
-    private static final int GRID_COLUMN = 3;
+    private static final int GRID_COLUMN = 2;
     RecyclerView recyclerView;
     List<ListeningImageContent> listeningImageContents;
+    MyRVAdapter myRVAdapter;
+    MediaPlayer mp;
+    //    ListeningImageContent listeningImageContent;
+    OnFragmentInteractionListener fragmentListener;
     MyPagerAdapter myPagerAdapter;
 
     public AnimalsFragment() {
@@ -39,16 +45,36 @@ public class AnimalsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), GRID_COLUMN));
-        recyclerView.setAdapter(new MyRVAdapter(data()));
+        myRVAdapter = new MyRVAdapter(data());
 
+        recyclerView.setAdapter(myRVAdapter);
     }
 
     private List<ListeningImageContent> data() {
         listeningImageContents = new ArrayList<>();
-        listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_01_big_size));
-        listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_02_big_size));
-        listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_03_big_size));
-        listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_04_big_size));
+
+        new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                //        конструктор для додавання зображення і звуку
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_01_big_size, R.raw.tiger_1)); //tiger
+                //        конструктор для додавання зображення
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_02_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_03_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_04_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_05_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_06_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_07_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_08_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_09_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_10_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_11_big_size));
+                listeningImageContents.add(new ListeningImageContent(R.drawable.animal_icon_12_big_size));
+
+            }
+        }.start();
+
         return listeningImageContents;
     }
 
@@ -57,6 +83,10 @@ public class AnimalsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.fragment_animals, container, false);
+    }
+
+    public interface OnFragmentInteractionListener {
+        void OnFragmentInteraction(int id);
     }
 
 }
