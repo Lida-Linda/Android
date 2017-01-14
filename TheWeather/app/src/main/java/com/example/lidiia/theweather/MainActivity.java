@@ -18,11 +18,11 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
     TextView tv;
-    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,52 +30,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         tv = (TextView) findViewById(R.id.tv_id);
-        btn = (Button) findViewById(R.id.btn_id);
 
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                new GetWeather().execute();
-            }
-        });
-    }
-
-    public class GetWeather extends AsyncTask <Void, String, String> {
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            tv.setText(s);
+        GetWeatherTask weatherTask = new GetWeatherTask();
+        weatherTask.execute();
+        try {
+            tv.setText(weatherTask.get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
         }
 
-        @Override
-        protected String doInBackground(Void... voids) {
-            HttpURLConnection urlConnection = null;
-            BufferedReader reader = null;
-            String jsonStr = null;
 
-            try {
-                URL url = new URL("http://api.openweathermap.org/data/2.5/weather?id=" + 710791 + "&APPID=fb932f11d172ebff38ca77f59cd8e63b");
-                urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setRequestMethod("GET");
-                urlConnection.connect();
-                InputStream inputStream = urlConnection.getInputStream();
-                StringBuffer buffer = new StringBuffer();
-                reader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    buffer.append(line + "\n");
-                }
-                jsonStr = buffer.toString();
-
-//            } catch (ProtocolException e) {
-//                e.printStackTrace();
-//            } catch (MalformedURLException e) {
-//                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            return jsonStr;
-        }
     }
 }
