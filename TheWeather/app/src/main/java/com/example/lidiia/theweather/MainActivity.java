@@ -22,25 +22,9 @@ import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView tv;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tv = (TextView) findViewById(R.id.tv_id);
-
-        GetWeatherTask weatherTask = new GetWeatherTask();
-        weatherTask.execute();
-        try {
-            tv.setText(weatherTask.get());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-
-
     }
 }
