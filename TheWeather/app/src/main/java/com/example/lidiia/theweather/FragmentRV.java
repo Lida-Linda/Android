@@ -94,7 +94,9 @@ public class FragmentRV extends Fragment {
                     for (int i = 0; i < jsonObject.getJSONArray("list").length(); i++) {
                         jsonObject2 = jsonObject.getJSONArray("list").getJSONObject(i);
                         dt = jsonObject2.getString("dt");
+                        Log.e("dt", dt);
                         parseWeatherList.add(new ParseWeather(dt));
+                        Log.e("list", String.valueOf(parseWeatherList.add(new ParseWeather(dt))));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -105,9 +107,10 @@ public class FragmentRV extends Fragment {
 
         if (thread2.isAlive()) {
             try {
-                Thread.currentThread().join();
+                Thread.currentThread().join(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+                Log.e("waiting", "Zzzzzzzzzzzzzzzzzzzzz");
             }
         }
 

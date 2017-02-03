@@ -22,7 +22,7 @@ public class FetchWeaher {
     private static final String CHERKASY_CITY_ID = "710791"; // Cherkasy city id
     private static final String UNITS_METRIC = "metric"; // for Celsius temperature
     private static final String LANG_UA = "ua"; // ukraine language support
-    private static final String WEATHER_KEY = "&APPID=bd5e378503939ddaee76f12ad7a97608";
+    private static final String WEATHER_KEY = "bd5e378503939ddaee76f12ad7a97608";
     private static final String URL_5DAYS_CITY_ID = "http://api.openweathermap.org/data/2.5/forecast?id="; //5 days/3 hour forecast data
 
     public static JSONObject getJsonObject(Context context, String cityId, String units) {
