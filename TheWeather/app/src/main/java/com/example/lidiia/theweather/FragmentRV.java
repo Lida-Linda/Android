@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -38,6 +39,8 @@ public class FragmentRV extends Fragment {
     List<ParseWeather> parseWeatherList;
     Handler handler;
 
+    String dt;
+
     public FragmentRV() {
         handler = new Handler();
     }
@@ -66,16 +69,6 @@ public class FragmentRV extends Fragment {
         return inflater.inflate(R.layout.fragment_rv, container, false);
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -83,20 +76,39 @@ public class FragmentRV extends Fragment {
 
 
     private List<ParseWeather> data() {
-        String cityId = new CityUnitsPreference(getActivity()).getCity();
-        String units = new CityUnitsPreference(getActivity()).getUnits();
+        final String cityId = new CityUnitsPreference(getActivity()).getCity();
+        final String units = new CityUnitsPreference(getActivity()).getUnits();
 
-        parseWeatherList = new ArrayList<>();
+        Thread thread2 = new Thread(new Runnable() {
 
-        try {
-            JSONObject jsonObject = FetchWeaher.getJsonObject(getActivity(), cityId, units);
+            JSONObject jsonObject;
 
-            parseWeatherList.add(new ParseWeather(jsonObject));
+            @Override
+            public void run() {
+                jsonObject = FetchWeaher.getJsonObject(getActivity(), cityId, units);
 
+                parseWeatherList = new ArrayList<>();
+                JSONObject jsonObject2;
 
-        } catch (JSONException je) {
-            Log.e(TAG, "Failed to parse JSON", je);
-            je.printStackTrace();
+                try {
+                    for (int i = 0; i < jsonObject.getJSONArray("list").length(); i++) {
+                        jsonObject2 = jsonObject.getJSONArray("list").getJSONObject(i);
+                        dt = jsonObject2.getString("dt");
+                        parseWeatherList.add(new ParseWeather(dt));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread2.start();
+
+        if (thread2.isAlive()) {
+            try {
+                Thread.currentThread().join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         return parseWeatherList;

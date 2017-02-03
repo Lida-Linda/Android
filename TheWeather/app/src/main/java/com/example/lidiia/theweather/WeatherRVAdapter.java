@@ -47,7 +47,7 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.Weat
         }
 
         public void bindWeather(ParseWeather parseWeather) {
-            tvTemp.setText((int) parseWeather.getTemp());
+            tvTemp.setText(parseWeather.getDt());
         }
     }
 
