@@ -39,7 +39,10 @@ public class FragmentRV extends Fragment {
     List<ParseWeather> parseWeatherList;
     Handler handler;
 
-    String dt;
+    String dtTxt;
+    String temp;
+    String weatherMain;
+    String windSpeed;
 
     public FragmentRV() {
         handler = new Handler();
@@ -88,15 +91,27 @@ public class FragmentRV extends Fragment {
                 jsonObject = FetchWeaher.getJsonObject(getActivity(), cityId, units);
 
                 parseWeatherList = new ArrayList<>();
+                JSONObject jsonArrayList;
                 JSONObject jsonObject2;
+                JSONObject jsonObject3;
+                JSONObject jsonArrayWeather;
 
                 try {
                     for (int i = 0; i < jsonObject.getJSONArray("list").length(); i++) {
-                        jsonObject2 = jsonObject.getJSONArray("list").getJSONObject(i);
-                        dt = jsonObject2.getString("dt");
-                        Log.e("dt", dt);
-                        parseWeatherList.add(new ParseWeather(dt));
-                        Log.e("list", String.valueOf(parseWeatherList.add(new ParseWeather(dt))));
+
+                        jsonArrayList = jsonObject.getJSONArray("list").getJSONObject(i);
+                        dtTxt = jsonArrayList.getString("dt_txt");
+
+                        jsonObject3 = jsonArrayList.getJSONObject("main");
+                        temp = jsonObject3.getString("temp");
+
+                        jsonArrayWeather = jsonArrayList.getJSONArray("weather").getJSONObject(0);
+                        weatherMain = jsonArrayWeather.getString("main");
+
+                        jsonObject2 = jsonArrayList.getJSONObject("wind");
+                        windSpeed = jsonObject2.getString("speed");
+
+                        parseWeatherList.add(new ParseWeather(dtTxt, temp, weatherMain, windSpeed));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

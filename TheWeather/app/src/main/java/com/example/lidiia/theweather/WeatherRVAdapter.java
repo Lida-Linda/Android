@@ -35,11 +35,17 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.Weat
     public class WeatherViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tvTemp;
+        TextView tvDtTxt;
+        TextView tvWeatherMain;
+        TextView tvWindSpeed;
 
         public WeatherViewHolder(View itemView) {
             super(itemView);
 
-            tvTemp = (TextView)itemView.findViewById(R.id.tv_temp_id);
+            tvTemp = (TextView)itemView.findViewById(R.id.tv_temp_list);
+            tvDtTxt = (TextView)itemView.findViewById(R.id.tv_dt_txt_list);
+            tvWeatherMain = (TextView)itemView.findViewById(R.id.tv_weather_main_list);
+            tvWindSpeed = (TextView)itemView.findViewById(R.id.tv_wind_speed_list);
         }
 
         @Override
@@ -47,7 +53,10 @@ public class WeatherRVAdapter extends RecyclerView.Adapter<WeatherRVAdapter.Weat
         }
 
         public void bindWeather(ParseWeather parseWeather) {
-            tvTemp.setText(parseWeather.getDt());
+            tvTemp.setText(parseWeather.getTemp());
+            tvDtTxt.setText(parseWeather.getDtTxt());
+            tvWeatherMain.setText(parseWeather.getWeatherMain());
+            tvWindSpeed.setText(parseWeather.getWindSpeed());
         }
     }
 

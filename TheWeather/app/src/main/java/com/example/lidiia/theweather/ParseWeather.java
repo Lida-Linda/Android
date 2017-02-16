@@ -9,13 +9,31 @@ import java.util.List;
 
 public class ParseWeather {
 
-    public String getDt() {
-        return dt;
+    private String dtTxt;
+    private String temp;
+    private String weatherMain;
+    private String windSpeed;
+
+    public ParseWeather(String dtTxt, String temp, String weatherMain, String windSpeed) {
+        this.dtTxt = dtTxt;
+        this.temp = temp;
+        this.weatherMain = weatherMain;
+        this.windSpeed = windSpeed;
     }
 
-    private String dt;
+    public String getDtTxt() {
+        return dtTxt;
+    }
 
-    public ParseWeather(String dt) {
-        this.dt = dt;
+    public String getTemp() {
+        return temp;
+    }
+
+    public String getWeatherMain() {
+        return weatherMain;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
     }
 }
