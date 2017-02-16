@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.annotation.UiThread;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -40,9 +41,8 @@ public class FragmentRV extends Fragment {
     Handler handler;
 
     String dtTxt;
-    String temp;
+    int temp;
     String weatherMain;
-    String windSpeed;
 
     public FragmentRV() {
         handler = new Handler();
@@ -92,7 +92,7 @@ public class FragmentRV extends Fragment {
 
                 parseWeatherList = new ArrayList<>();
                 JSONObject jsonArrayList;
-                JSONObject jsonObject2;
+//                JSONObject jsonObject2;
                 JSONObject jsonObject3;
                 JSONObject jsonArrayWeather;
 
@@ -103,15 +103,15 @@ public class FragmentRV extends Fragment {
                         dtTxt = jsonArrayList.getString("dt_txt");
 
                         jsonObject3 = jsonArrayList.getJSONObject("main");
-                        temp = jsonObject3.getString("temp");
+                        temp = jsonObject3.getInt("temp");
 
                         jsonArrayWeather = jsonArrayList.getJSONArray("weather").getJSONObject(0);
                         weatherMain = jsonArrayWeather.getString("main");
 
-                        jsonObject2 = jsonArrayList.getJSONObject("wind");
-                        windSpeed = jsonObject2.getString("speed");
+//                        jsonObject2 = jsonArrayList.getJSONObject("wind");
+//                        windSpeed = jsonObject2.getString("speed");
 
-                        parseWeatherList.add(new ParseWeather(dtTxt, temp, weatherMain, windSpeed));
+                        parseWeatherList.add(new ParseWeather(dtTxt, temp, weatherMain));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

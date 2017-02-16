@@ -10,30 +10,25 @@ import java.util.List;
 public class ParseWeather {
 
     private String dtTxt;
-    private String temp;
+    private int temp;
     private String weatherMain;
-    private String windSpeed;
 
-    public ParseWeather(String dtTxt, String temp, String weatherMain, String windSpeed) {
+    public ParseWeather(String dtTxt, int temp, String weatherMain) {
         this.dtTxt = dtTxt;
         this.temp = temp;
         this.weatherMain = weatherMain;
-        this.windSpeed = windSpeed;
     }
 
     public String getDtTxt() {
         return dtTxt;
     }
 
-    public String getTemp() {
+    public int getTemp() {
         return temp;
     }
 
     public String getWeatherMain() {
         return weatherMain;
     }
-
-    public String getWindSpeed() {
-        return windSpeed;
-    }
 }
+
